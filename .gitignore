@@ -14,7 +14,6 @@ gradle-app.setting
 ### Eclipse ###
 *.pydevproject
 .metadata
-.gradle
 bin/
 tmp/
 *.tmp
@@ -74,3 +73,5 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 
+### IDEA ###
+.idea/

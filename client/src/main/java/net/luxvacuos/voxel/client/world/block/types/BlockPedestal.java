@@ -30,6 +30,7 @@ import net.luxvacuos.igl.vector.Vector8f;
 import net.luxvacuos.voxel.client.rendering.api.opengl.Tessellator;
 import net.luxvacuos.voxel.client.world.block.BlockEntity;
 import net.luxvacuos.voxel.client.world.block.BlocksResources;
+import net.luxvacuos.voxel.universal.world.block.BlockFace;
 
 public class BlockPedestal extends BlockEntity {
 
@@ -46,33 +47,15 @@ public class BlockPedestal extends BlockEntity {
 	}
 
 	@Override
-	public Vector8f texCoordsBack() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Pedestal");
-	}
-
-	@Override
-	public Vector8f texCoordsDown() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("PedestalBottom");
-	}
-
-	@Override
-	public Vector8f texCoordsFront() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Pedestal");
-	}
-
-	@Override
-	public Vector8f texCoordsLeft() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Pedestal");
-	}
-
-	@Override
-	public Vector8f texCoordsRight() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Pedestal");
-	}
-
-	@Override
-	public Vector8f texCoordsUp() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("PedestalTop");
+	public Vector8f texCoords(BlockFace face) {
+		switch(face) {
+			case UP:
+				return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("PedestalTop");
+			case DOWN:
+				return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("PedestalBottom");
+			default:
+				return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Pedestal");
+		}
 	}
 
 	@Override
@@ -94,7 +77,7 @@ public class BlockPedestal extends BlockEntity {
 		float bfl = bfl_ / 15f;
 		float bfr = bfr_ / 15f;
 		if (top) {
-			Vector8f texcoords = texCoordsUp();
+			Vector8f texcoords = texCoords(BlockFace.UP);
 			// top face
 			tess.vertex3f(new Vector3f(x + 0.3f, y + 1f, z + 0.7f));
 			tess.texture2f(new Vector2f(texcoords.getZ(), texcoords.getW()));
@@ -154,7 +137,7 @@ public class BlockPedestal extends BlockEntity {
 		}
 
 		if (bottom) {
-			Vector8f texcoords = texCoordsDown();
+			Vector8f texcoords = texCoords(BlockFace.DOWN);
 			// bottom face
 			tess.vertex3f(new Vector3f(x, y, z));
 			tess.texture2f(new Vector2f(texcoords.getZ(), texcoords.getW()));
@@ -214,7 +197,7 @@ public class BlockPedestal extends BlockEntity {
 		}
 
 		if (back) {
-			Vector8f texcoords = texCoordsBack();
+			Vector8f texcoords = texCoords(BlockFace.BACK);
 			// back face
 			tess.vertex3f(new Vector3f(x, y, z + 1f));
 			tess.texture2f(new Vector2f(texcoords.getX(), texcoords.getY()));
@@ -276,7 +259,7 @@ public class BlockPedestal extends BlockEntity {
 
 		if (front) {
 			// front face
-			Vector8f texcoords = texCoordsFront();
+			Vector8f texcoords = texCoords(BlockFace.FRONT);
 			tess.vertex3f(new Vector3f(x + 0.3f, y + 1f, z + 0.3f));
 			tess.texture2f(new Vector2f(texcoords.getZ(), texcoords.getW()));
 			tess.normal3f(new Vector3f(0, 0.2f, -1));
@@ -337,7 +320,7 @@ public class BlockPedestal extends BlockEntity {
 		}
 
 		if (right) {
-			Vector8f texcoords = texCoordsRight();
+			Vector8f texcoords = texCoords(BlockFace.RIGHT);
 			// right face
 			tess.vertex3f(new Vector3f(x, y, z));
 			tess.texture2f(new Vector2f(texcoords.getK(), texcoords.getL()));
@@ -398,7 +381,7 @@ public class BlockPedestal extends BlockEntity {
 		}
 
 		if (left) {
-			Vector8f texcoords = texCoordsLeft();
+			Vector8f texcoords = texCoords(BlockFace.LEFT);
 			// left face
 			tess.vertex3f(new Vector3f(x + 1f, y, z + 1f));
 			tess.texture2f(new Vector2f(texcoords.getK(), texcoords.getL()));

@@ -28,6 +28,7 @@ import net.luxvacuos.igl.vector.Vector8f;
 import net.luxvacuos.voxel.client.rendering.api.opengl.Tessellator;
 import net.luxvacuos.voxel.client.world.block.BlockBase;
 import net.luxvacuos.voxel.client.world.block.BlocksResources;
+import net.luxvacuos.voxel.universal.world.block.BlockFace;
 
 public class BlockLava extends BlockBase {
 
@@ -39,33 +40,19 @@ public class BlockLava extends BlockBase {
 	}
 
 	@Override
-	public Vector8f texCoordsUp() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Lava");
-	}
-
-	@Override
-	public Vector8f texCoordsDown() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Lava");
-	}
-
-	@Override
-	public Vector8f texCoordsFront() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("LavaSide");
-	}
-
-	@Override
-	public Vector8f texCoordsBack() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("LavaSide");
-	}
-
-	@Override
-	public Vector8f texCoordsRight() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("LavaSide");
-	}
-
-	@Override
-	public Vector8f texCoordsLeft() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("LavaSide");
+	public Vector8f texCoords(BlockFace face) {
+		switch(face) {
+			case UP:
+			case DOWN:
+				return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Lava");
+			case FRONT:
+			case BACK:
+			case LEFT:
+			case RIGHT:
+				return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("LavaSide");
+			default:
+				return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Lava");
+		}
 	}
 
 	@Override

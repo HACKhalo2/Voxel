@@ -27,6 +27,7 @@ import net.luxvacuos.igl.vector.Vector3f;
 import net.luxvacuos.igl.vector.Vector8f;
 import net.luxvacuos.voxel.client.rendering.api.opengl.Tessellator;
 import net.luxvacuos.voxel.client.world.items.ItemDrop;
+import net.luxvacuos.voxel.universal.world.block.BlockFace;
 
 public abstract class BlockBase {
 	protected transient boolean transparent = false;
@@ -38,29 +39,13 @@ public abstract class BlockBase {
 
 	public abstract byte getId();
 
-	public Vector8f texCoordsUp() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing");
-	}
-
-	public Vector8f texCoordsDown() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing");
-	}
-
-	public Vector8f texCoordsFront() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing");
-	}
-
-	public Vector8f texCoordsBack() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing");
-	}
-
-	public Vector8f texCoordsRight() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing");
-	}
-
-	public Vector8f texCoordsLeft() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing");
-	}
+	/**
+	 * Returns the Texture Coordinates for the block by it's BlockFace
+	 * @param face
+	 * @return
+	 */
+	public Vector8f texCoords(BlockFace face)
+		{ return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Missing"); }
 
 	public BoundingBox getBoundingBox(Vector3f pos) {
 		return new BoundingBox(new Vector3(pos.x, pos.y, pos.z), new Vector3(pos.x + 1, pos.y + 1, pos.z + 1));

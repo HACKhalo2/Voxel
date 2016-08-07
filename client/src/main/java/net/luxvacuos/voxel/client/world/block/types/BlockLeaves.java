@@ -23,6 +23,7 @@ package net.luxvacuos.voxel.client.world.block.types;
 import net.luxvacuos.igl.vector.Vector8f;
 import net.luxvacuos.voxel.client.world.block.BlockBase;
 import net.luxvacuos.voxel.client.world.block.BlocksResources;
+import net.luxvacuos.voxel.universal.world.block.BlockFace;
 
 public class BlockLeaves extends BlockBase {
 
@@ -36,32 +37,7 @@ public class BlockLeaves extends BlockBase {
 	}
 
 	@Override
-	public Vector8f texCoordsUp() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Leaves");
-	}
-
-	@Override
-	public Vector8f texCoordsDown() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Leaves");
-	}
-
-	@Override
-	public Vector8f texCoordsFront() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Leaves");
-	}
-
-	@Override
-	public Vector8f texCoordsBack() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Leaves");
-	}
-
-	@Override
-	public Vector8f texCoordsRight() {
-		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Leaves");
-	}
-
-	@Override
-	public Vector8f texCoordsLeft() {
+	public Vector8f texCoords(BlockFace face) {
 		return BlocksResources.getTessellatorTextureAtlas().getTextureCoords("Leaves");
 	}
 

@@ -56,6 +56,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.luxvacuos.voxel.universal.world.block.BlockFace;
 import org.lwjgl.BufferUtils;
 
 import net.luxvacuos.igl.vector.Matrix4f;
@@ -441,7 +442,7 @@ public class Tessellator {
 		float bfr = bfr_ / 15f;
 		if (id != Block.Air.getId()) {
 			if (top) {
-				Vector8f texcoords = block.texCoordsUp();
+				Vector8f texcoords = block.texCoords(BlockFace.UP);
 				// top face
 				vertex3f(new Vector3f(x, y + ysize, z + zsize));
 				texture2f(new Vector2f(texcoords.getZ(), texcoords.getW()));
@@ -500,7 +501,7 @@ public class Tessellator {
 
 			}
 			if (bottom) {
-				Vector8f texcoords = block.texCoordsDown();
+				Vector8f texcoords = block.texCoords(BlockFace.DOWN);
 				// bottom face
 				vertex3f(new Vector3f(x, y, z));
 				texture2f(new Vector2f(texcoords.getZ(), texcoords.getW()));
@@ -560,7 +561,7 @@ public class Tessellator {
 			}
 
 			if (back) {
-				Vector8f texcoords = block.texCoordsBack();
+				Vector8f texcoords = block.texCoords(BlockFace.BACK);
 				// back face
 				vertex3f(new Vector3f(x, y, z + zsize));
 				texture2f(new Vector2f(texcoords.getX(), texcoords.getY()));
@@ -623,7 +624,7 @@ public class Tessellator {
 			}
 			if (front) {
 				// front face
-				Vector8f texcoords = block.texCoordsFront();
+				Vector8f texcoords = block.texCoords(BlockFace.FRONT);
 				vertex3f(new Vector3f(x, y + ysize, z));
 				texture2f(new Vector2f(texcoords.getZ(), texcoords.getW()));
 				normal3f(new Vector3f(0, 0, -1));
@@ -683,7 +684,7 @@ public class Tessellator {
 
 			}
 			if (right) {
-				Vector8f texcoords = block.texCoordsRight();
+				Vector8f texcoords = block.texCoords(BlockFace.RIGHT);
 				// right face
 				vertex3f(new Vector3f(x, y, z));
 				texture2f(new Vector2f(texcoords.getK(), texcoords.getL()));
@@ -743,7 +744,7 @@ public class Tessellator {
 
 			}
 			if (left) {
-				Vector8f texcoords = block.texCoordsLeft();
+				Vector8f texcoords = block.texCoords(BlockFace.LEFT);
 				// left face
 				vertex3f(new Vector3f(x + xsize, y, z + zsize));
 				texture2f(new Vector2f(texcoords.getK(), texcoords.getL()));
